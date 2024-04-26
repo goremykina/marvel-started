@@ -44,7 +44,7 @@ class CharList extends Component {
         const { characters, error, loading } = this.state;
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
-        
+
         return (
             <div className="char__list">
                 {errorMessage}
@@ -52,7 +52,7 @@ class CharList extends Component {
                 <ul className="char__grid">
                     {characters.map(character => (
                         <li key={character.id} className="char__item" onClick={() => this.props.onCharSelected(character.id)}>
-                            <img src={character.thumbnail} style={{objectFit: 'contain'}} alt="abyss"/>
+                            <img src={character.thumbnail} style={{objectFit: 'unset'}} alt="abyss"/>
                             <div className="char__name">{character.name}</div>
                         </li>
                     ))}
