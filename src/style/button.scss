@@ -58,7 +58,7 @@
                 transition: none;
             }
             &::after {
-                border-color: $grey transparent; 
+                border-color: $grey transparent;
                 transition: none;
             }
         }
@@ -87,5 +87,9 @@
     }
     &:hover {
         transform: translateY(-5px);
+    }
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
     }
 }

@@ -6,31 +6,64 @@ import ErrorMessage from "../errorMessage/ErrorMessage";
 
 class CharList extends Component {
     state = {
-        characters: [],
+        charList: [],
         loading: true,
-        error: false
+        error: false,
+        newItemLoading: false,
+        offset: 210,
+        charEnded: false
     }
 
     marvelService = new MarvelService();
 
     componentDidMount() {
-        this.marvelService
-            .getAllCharacters()
-            .then(res => {
-                this.setState({
-                    ...this.state,
-                    characters: res
-                });
-            })
+        // this.marvelService
+        //     .getAllCharacters()
+        //         .then(res => {
+        //             this.setState({
+        //                 ...this.state,
+        //                 charList: res
+        //             });
+        //         })
+        //
+        //     .then(this.onCharListLoaded)
+        //     .catch(this.onError)
+
+        this.onRequest();
+    }
+
+    onRequest = (offset) => {
+        this.onCharListLoading()
+        this.marvelService.getAllCharacters(offset)
+            // .then(res => {
+            //     this.setState({
+            //         ...this.state,
+            //         charList: res
+            //     });
+            // })
             .then(this.onCharListLoaded)
             .catch(this.onError)
     }
 
-    onCharListLoaded = (charList) => {
+    onCharListLoading = () => {
         this.setState({
-            charList,
-            loading: false
+            newItemLoading: true
         })
+    }
+
+    onCharListLoaded = (newCharList) => {
+        let ended = false;
+        if (newCharList.length < 9) {
+            ended = true;
+        }
+
+        this.setState(({offset, charList}) => ({
+            charList : [...charList, ...newCharList],
+            loading: false,
+            newItemLoading: false,
+            offset: offset + 9,
+            charEnded: ended
+        }))
     }
 
     onError = () => {
@@ -41,7 +74,7 @@ class CharList extends Component {
     }
 
     render() {
-        const { characters, error, loading } = this.state;
+        const { charList, error, loading, newItemLoading, offset, charEnded } = this.state;
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
 
@@ -50,14 +83,18 @@ class CharList extends Component {
                 {errorMessage}
                 {spinner}
                 <ul className="char__grid">
-                    {characters.map(character => (
+                    {charList.map(character => (
                         <li key={character.id} className="char__item" onClick={() => this.props.onCharSelected(character.id)}>
                             <img src={character.thumbnail} style={{objectFit: 'unset'}} alt="abyss"/>
                             <div className="char__name">{character.name}</div>
                         </li>
                     ))}
                 </ul>
-                <button className="button button__main button__long">
+                <button
+                    className="button button__main button__long"
+                    disabled={newItemLoading}
+                    style={{'display': charEnded ? 'none' : 'block'}}
+                    onClick={() => this.onRequest(offset)}>
                     <div className="inner">load more</div>
                 </button>
             </div>
