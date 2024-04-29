@@ -22,7 +22,6 @@ class CharInfo extends Component {
         if(this.props.charId !== prevProps.charId) {
             this.updateChar()
         }
-
     }
 
     updateChar = () => {
