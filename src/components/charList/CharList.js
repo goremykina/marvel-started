@@ -13,7 +13,7 @@ class CharList extends Component {
         error: false,
         newItemLoading: false,
         offset: 210,
-        charEnded: false
+        charEnded: false,
     }
 
     marvelService = new MarvelService();
@@ -85,12 +85,7 @@ class CharList extends Component {
                 {errorMessage}
                 {spinner}
                 <ul className="char__grid">
-                    {charList.map(character => (
-                        <li key={character.id} className="char__item" onClick={() => this.props.onCharSelected(character.id)}>
-                            <img src={character.thumbnail} style={{objectFit: 'unset'}} alt="abyss"/>
-                            <div className="char__name">{character.name}</div>
-                        </li>
-                    ))}
+                    <LoadedCharacters charList={charList} selectedCharId={this.props.selectedCharId} onCharSelected={this.props.onCharSelected} />
                 </ul>
                 <button
                     className="button button__main button__long"
@@ -104,8 +99,35 @@ class CharList extends Component {
     }
 }
 
+const LoadedCharacters = ({ charList, selectedCharId, onCharSelected }) => {
+    const handleClick = (id) => {
+        onCharSelected(id);
+    }
+    const handleKeyDown = (id, event) => {
+        if (event.key === 'Enter') {
+            onCharSelected(id);
+        }
+    }
+
+    return (
+        <>
+            {charList.map(character => (
+                <li key={character.id}
+                    tabIndex={0}
+                    className={`char__item ${selectedCharId === character.id && 'char__item_selected'}`}
+                    onClick={() => handleClick(character.id)}
+                    onKeyDown={(event) => handleKeyDown(character.id, event)}>>
+                    <img src={character.thumbnail} style={{objectFit: 'unset'}} alt="abyss"/>
+                    <div className="char__name">{character.name}</div>
+                </li>
+            ))}
+        </>
+    )
+}
+
 CharList.propTypes = {
     onCharSelected: PropTypes.func.isRequired,
+    selectedCharId: PropTypes.number
 }
 
 export default CharList;

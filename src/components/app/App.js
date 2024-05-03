@@ -9,12 +9,12 @@ import decoration from '../../resources/img/vision.png';
 
 class App extends Component {
     state = {
-        selectedChar: null,
+        selectedCharId: null,
     }
 
     onCharSelected = (id) => {
         this.setState({
-            selectedChar: id,
+            selectedCharId: id,
         })
     }
 
@@ -28,10 +28,10 @@ class App extends Component {
                     </ErrorBoundary>
                     <div className="char__content">
                         <ErrorBoundary>
-                            <CharList onCharSelected={this.onCharSelected}/>
+                            <CharList selectedCharId={this.state.selectedCharId} onCharSelected={this.onCharSelected}/>
                         </ErrorBoundary>
                         <ErrorBoundary>
-                            <CharInfo charId={this.state.selectedChar}/>
+                            <CharInfo charId={this.state.selectedCharId}/>
                         </ErrorBoundary>
                     </div>
                     <img className="bg-decoration" src={decoration} alt="vision"/>
