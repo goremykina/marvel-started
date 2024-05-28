@@ -7,8 +7,6 @@ import useMarvelService from "../../services/MarvelService";
 
 const RandomChar = () =>  {
     const [char, setChar] = useState(null);
-    // const [loading, setLoading] = useState(false);
-    // const [error, setError] = useState(false);
 
     const { loading, error, getCharacter, clearError } = useMarvelService();
 
