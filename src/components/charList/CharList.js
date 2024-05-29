@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
-import './charList.scss';
 import useMarvelService from "../../services/MarvelService";
+import './charList.scss';
+
 
 const CharList = (props) => {
     const [charList, setCharList] = useState([]);
@@ -21,7 +22,6 @@ const CharList = (props) => {
         setNewItemLoading(true)
         getAllCharacters(offset)
             .then(onCharListLoaded)
-            // .catch(err => console.log(err))
     }
 
     const onCharListLoaded = (newCharList) => {
@@ -58,9 +58,7 @@ const CharList = (props) => {
 }
 
 const LoadedCharacters = ({ charList, selectedCharId, onCharSelected }) => {
-    console.log(charList)
     const handleClick = (id) => {
-        console.log(id)
         onCharSelected(id);
     }
     const handleKeyDown = (id, event) => {
