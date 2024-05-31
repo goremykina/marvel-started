@@ -4,8 +4,9 @@ import './style/style.scss';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainPage from "./components/pages/MainPage";
 import ErrorMessage from "./components/errorMessage/ErrorMessage";
-import ComicsList from "./components/comicsList/ComicsList";
 import App from './components/app/App';
+import ComicsPage from "./components/pages/ComicsPage";
+import NotFoundPage from "./components/pages/404";
 
 const router = createBrowserRouter([
     {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/comics',
-                element: <ComicsList />,
+                element: <ComicsPage />,
+            },
+            {
+                path: '*',
+                element: <NotFoundPage />
             }
         ]
     }

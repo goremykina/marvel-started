@@ -1,0 +1,19 @@
+@import '../../style/variables.scss';
+
+.not_found_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
+}
+
+.not_found {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.not_found.link {
+  color: $main-color;
+  display: block;
+}
