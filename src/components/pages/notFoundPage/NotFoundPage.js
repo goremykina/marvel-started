@@ -1,4 +1,4 @@
-import ErrorMessage from "../errorMessage/ErrorMessage";
+import ErrorMessage from "../../errorMessage/ErrorMessage";
 import { Link } from "react-router-dom";
 import './notFoundPage.scss'
 

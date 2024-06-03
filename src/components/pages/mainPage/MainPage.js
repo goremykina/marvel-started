@@ -1,7 +1,7 @@
-import RandomChar from "../randomChar/RandomChar";
-import CharList from "../charList/CharList";
-import CharInfo from "../charInfo/CharInfo";
-import decoration from '../../resources/img/vision.png';
+import RandomChar from "../../randomChar/RandomChar";
+import CharList from "../../charList/CharList";
+import CharInfo from "../../charInfo/CharInfo";
+import decoration from '../../../resources/img/vision.png';
 import { useState } from "react";
 
 const MainPage = () => {
