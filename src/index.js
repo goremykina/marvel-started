@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style/style.scss';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainPage from "./components/pages/MainPage";
+import MainPage from "./components/pages/mainPage/MainPage";
 import ErrorMessage from "./components/errorMessage/ErrorMessage";
 import App from './components/app/App';
-import ComicsPage from "./components/pages/ComicsPage";
-import NotFoundPage from "./components/pages/404";
+import ComicsPage from "./components/pages/comicPage/ComicsPage";
+import NotFoundPage from "./components/pages/notFoundPage/NotFoundPage";
+import SingleComicPage from "./components/pages/singleComicPage/SingleComicPage";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
             {
                 path: '/comics',
                 element: <ComicsPage />,
+            },
+            {
+                path: '/comics/:comicId',
+                element: <SingleComicPage />,
             },
             {
                 path: '*',
