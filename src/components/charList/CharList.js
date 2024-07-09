@@ -35,8 +35,6 @@ const CharList = (props) => {
         setCharEnded(charEnded => ended)
     }
 
-    console.log('charlist')
-
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading ? <Spinner/> : null;
 

@@ -5,13 +5,11 @@ import Spinner from "../spinner/Spinner";
 import './comicsList.scss';
 import { Link } from "react-router-dom";
 
-
 const ComicsList = () => {
     const [offset, setOffset] = useState(200);
     const [newItemLoading, setNewItemLoading] = useState(false);
     const [comicsList, setComicsList] = useState([]);
     const [comicsEnded, setComicsEnded] = useState(false);
-
     const { loading, error, getAllComics } =  useMarvelService();
 
     useEffect(() => {
@@ -63,7 +61,7 @@ const LoadedComics = ({ comicsList }) => {
             {comicsList.map((comic, index) => (
                 <li
                     className="comics__item"
-                    key={index}>
+                    key={comic.id}>
                     <Link to={`/comics/${comic.id}`}>
                         <img src={comic.thumbnail} alt={comic.title} className="comics__item-img"/>
                         <div className="comics__item-name">{comic.title}</div>
@@ -74,7 +72,6 @@ const LoadedComics = ({ comicsList }) => {
             }
         </>
     )
-
 }
 
 export default ComicsList;
