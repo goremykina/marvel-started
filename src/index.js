@@ -8,6 +8,7 @@ import App from './components/app/App';
 import ComicsPage from "./components/pages/comicPage/ComicsPage";
 import NotFoundPage from "./components/pages/notFoundPage/NotFoundPage";
 import SingleComicPage from "./components/pages/singleComicPage/SingleComicPage";
+import SingleCharacterPage from "./components/pages/singleCharacterPage/SingleCharacterPage";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: '*',
                 element: <NotFoundPage />
+            },
+            {
+                path: '/characters/:charId',
+                element: <SingleCharacterPage />
             }
         ]
     }
@@ -38,8 +43,9 @@ const router = createBrowserRouter([
 ReactDOM
     .createRoot(document.getElementById('root'))
     .render(
-        <React.StrictMode>
-            <RouterProvider router={router} />
-        </React.StrictMode>,
+        <RouterProvider router={router} />
+        // <React.StrictMode>
+        //     <RouterProvider router={router} />
+        // </React.StrictMode>,
     );
 

@@ -6,7 +6,6 @@ import Spinner from "../../spinner/Spinner";
 import './singleComicPage.scss';
 
 const SingleComicPage = () => {
-    console.log('123')
     const { comicId } = useParams();
     const [comic, setComic] = useState(null);
 
