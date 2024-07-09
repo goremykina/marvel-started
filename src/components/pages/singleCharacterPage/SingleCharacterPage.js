@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ErrorMessage from "../../errorMessage/ErrorMessage";
 import Spinner from "../../spinner/Spinner";
 import './singleCharacterPage.scss'
+import { Helmet } from "react-helmet";
 
 export default function SingleCharacterPage (){
     const { charId } = useParams();
@@ -45,6 +46,13 @@ const View = ({ char }) => {
 
     return (
         <div className="single-char">
+            <Helmet>
+                <meta
+                    name="description"
+                    content={`${title} page`}
+                />
+                <title>{title}</title>
+            </Helmet>
             <img src={thumbnail} alt={title} className="single-char__img"/>
             <div className="single-char__info">
                 <h2 className="single-char__name">{title}</h2>
